@@ -1,7 +1,7 @@
 function setWrokingToggole(first,second,creep){
     JSON.stringify(creep);
     if(creep.memory.working && creep.store[RESOURCE_ENERGY] == 0) {
-        this.memory.working = false;
+        creep.memory.working = false;
         first.show();
     }
     if(!creep.memory.working && creep.store.getFreeCapacity() == 0) {

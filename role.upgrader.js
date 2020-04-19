@@ -12,7 +12,7 @@ let roleUpgrader = {
         utils.setWrokingToggole(
             {
                 show:()=>{
-                    this.say('🔄 harvest');
+                    creep.say('🔄 harvest');
                 },
                 do:()=>{
                     utils.harvest(creep);
@@ -20,7 +20,7 @@ let roleUpgrader = {
             },
             {
                 show:()=>{
-                    this.say('⚡ upgrade');
+                    creep.say('⚡ upgrade');
                 },
                 do:()=>{
                     work();
