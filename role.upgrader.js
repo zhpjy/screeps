@@ -10,14 +10,7 @@ let roleUpgrader = {
         }
 
         utils.setWrokingToggole(
-            {
-                show:()=>{
-                    creep.say('🔄 harvest');
-                },
-                do:()=>{
-                    utils.harvest(creep);
-                }
-            },
+            null,
             {
                 show:()=>{
                     creep.say('⚡ upgrade');
