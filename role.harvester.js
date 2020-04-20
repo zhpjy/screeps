@@ -4,11 +4,6 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        function upgradeWork(creep){
-            if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
-            } 
-        }
         function work(creep) {
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
@@ -21,7 +16,7 @@ var roleHarvester = {
                     creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             }else{
-                upgradeWork(creep)
+                utils.upgradeWork(creep);
             }
         }
 

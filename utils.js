@@ -27,13 +27,37 @@ function setWrokingToggole(first,second,creep){
 }
 
 function harvest(creep){
-    var sources = creep.room.find(FIND_SOURCES);
-    if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-        creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffffff'}});
+    let sourceId = null;
+    let sources = creep.room.find(FIND_SOURCES);
+    if(creep.memory.sourceId==null){
+        creep.memory.sourceId = sources[0].id;
+        sourceId = creep.memory.id; 
+        let targets = _.filter(sources, (s) => s.id == sourceId);
+        moveToHarvest(targets,creep);
+    }else{
+        sourceId = creep.memory.sourceId;
+        let targets = _.filter(sources, (s) => s.id == sourceId);
+        moveToHarvest(targets,creep);
+    }
+    function moveToHarvest(targets,creep){
+        if(targets.length>0&&creep.harvest(targets[0]) == ERR_NOT_IN_RANGE){
+            let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            if(r!=0){
+                creep.memory.source=null; 
+            }
+        }
+    }
+}
+
+function upgradeWork(creep){
+    if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+        creep.moveTo(creep.room.controller);
     } 
 }
 
+
 module.exports = {
     setWrokingToggole:setWrokingToggole,
-    harvest:harvest
+    harvest:harvest,
+    upgradeWork:upgradeWork
 };
