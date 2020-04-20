@@ -40,12 +40,9 @@ function harvest(creep){
         moveToHarvest(targets,creep);
     }
     function moveToHarvest(targets,creep){
-        if(targets.length>0&&creep.harvest(targets[0]) == ERR_NOT_IN_RANGE){
-            let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-            if(r!=0){
-                creep.memory.source=null; 
-            }
-        }else if(creep.harvest(targets[0]) == ERR_NOT_FOUND){
+        let result = creep.harvest(targets[0])
+        if(targets.length>0&&result== ERR_NOT_IN_RANGE){
+            //如果不在范围内则移动至
             let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
             if(r!=0){
                 creep.memory.source=null; 
@@ -68,10 +65,32 @@ function findClose(){
 
 }
 
-function setTarget(){
+//findTargetCallback需要返回一个数组
+function setWorkTarget(creep,findTargetCallback,doWrokCallback,randomWrokCallBack){
+    if(creep.memory.workTargetId){
+        //有工作目标
+        let workTargetId = creep.memory.workTargetId;
+        if(findTargetCallback(workTargetId).length==0){
+            //找不到工作目标
+            creep.memory.workTargetId=null;
+        }else{
+            doWrokCallback(workTargetId);
+        }
+    }else{
+        //没有工作目标
+        let workTarget = randomWrokCallBack();
+        let workTargetId = workTarget.id;
+        
+    }
+}
+
+function idGen(){
 
 }
 
+function doAndShowError(){
+
+}
 
 module.exports = {
     setWrokingToggole:setWrokingToggole,
