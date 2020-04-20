@@ -25,7 +25,7 @@ var roleHarvester = {
                     creep.say('store');
                 },
                 do:()=>{
-                    work();
+                    work(creep);
                 } 
             },
             creep

@@ -3,7 +3,7 @@ let roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        function work(){
+        function work(creep){
             if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(creep.room.controller);
             } 
@@ -16,7 +16,7 @@ let roleUpgrader = {
                     creep.say('⚡ upgrade');
                 },
                 do:()=>{
-                    work();
+                    work(creep);
                 } 
             },
             creep
