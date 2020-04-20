@@ -17,7 +17,7 @@ module.exports.loop = function () {
             roleUpgrader.run(creep);
         }
         if(creep.memory.role == 'builder') {
-            role.run(creep);
+            ruleBilder.run(creep);
         }
     }
 }

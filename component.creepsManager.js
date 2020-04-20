@@ -33,6 +33,13 @@ function autoGenerate(){
         Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
             {memory: {role: 'upgrader'}});        
     }
+
+    if(builders.length < CONFIG.BUILDER_NUM) {
+        var newName = 'Builder' + Game.time;
+        console.log('Spawning new builder: ' + newName);
+        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+            {memory: {role: 'builder'}});        
+    }
 }
 
 
