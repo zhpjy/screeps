@@ -22,7 +22,7 @@ function autoGenerate(){
     if(harvesters.length<CONFIG.HARVESTER_NUM){
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, {memory: {role: 'harvester'}});
+        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, {memory: {role: 'harvester'}});
         //采矿工人数目不达标不生产别的工人
         return;
     }
@@ -30,14 +30,14 @@ function autoGenerate(){
     if(upgrader.length < CONFIG.UPGRASER_NUM) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
             {memory: {role: 'upgrader'}});        
     }
 
     if(builders.length < CONFIG.BUILDER_NUM) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep([WORK,CARRY,MOVE], newName, 
+        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
             {memory: {role: 'builder'}});        
     }
 }
