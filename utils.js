@@ -45,6 +45,11 @@ function harvest(creep){
             if(r!=0){
                 creep.memory.source=null; 
             }
+        }else if(creep.harvest(targets[0]) == ERR_NOT_FOUND){
+            let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+            if(r!=0){
+                creep.memory.source=null; 
+            }
         }
     }
 }
@@ -53,6 +58,18 @@ function upgradeWork(creep){
     if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
         creep.moveTo(creep.room.controller);
     } 
+}
+
+function randomColor(){
+
+}
+
+function findClose(){
+
+}
+
+function setTarget(){
+
 }
 
 
