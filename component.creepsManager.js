@@ -15,14 +15,14 @@ function autoGenerate(){
     var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     console.log("harvesters:"+harvesters.length+" builders"+builders.length+" upgrader:" + upgrader.length)
 
-    if(Game.spawns['Spawn1'].energy<200){
+    if(Game.spawns[CONFIG.SPAWN_NAME].energy<200){
         return;
     }
 
     if(harvesters.length<CONFIG.HARVESTER_NUM){
         var newName = 'Harvester' + Game.time;
         console.log('Spawning new harvester: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, {memory: {role: 'harvester'}});
+        Game.spawns[CONFIG.SPAWN_NAME].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, {memory: {role: 'harvester'}});
         //采矿工人数目不达标不生产别的工人
         return;
     }
@@ -30,14 +30,14 @@ function autoGenerate(){
     if(upgrader.length < CONFIG.UPGRASER_NUM) {
         var newName = 'Upgrader' + Game.time;
         console.log('Spawning new upgrader: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
+        Game.spawns[CONFIG.SPAWN_NAME].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
             {memory: {role: 'upgrader'}});        
     }
 
     if(builders.length < CONFIG.BUILDER_NUM) {
         var newName = 'Builder' + Game.time;
         console.log('Spawning new builder: ' + newName);
-        Game.spawns['Spawn1'].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
+        Game.spawns[CONFIG.SPAWN_NAME].spawnCreep(CONFIG.WORKER_TEMPLATE, newName, 
             {memory: {role: 'builder'}});        
     }
 }
