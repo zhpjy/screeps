@@ -41,10 +41,15 @@ function harvest(creep){
     }
     function moveToHarvest(targets,creep){
         let result = creep.harvest(targets[0])
-        if(targets.length>0&&result== ERR_NOT_IN_RANGE){
-            //如果不在范围内则移动至
-            let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-            if(r!=0){
+        if(targets.length>0){
+            if(result == ERR_NOT_IN_RANGE){
+                //如果不在范围内则移动至
+                let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                if(r!=0){
+                    creep.memory.source=null; 
+                }
+            }else if(result == ERR_NOT_ENOUGH_RESOURCES){
+                //一个矿挖完了就换一个
                 creep.memory.source=null; 
             }
         }
