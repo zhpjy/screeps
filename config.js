@@ -3,5 +3,6 @@ module.exports = {
     UPGRASER_NUM:3,
     BUILDER_NUM:8,
     WORKER_TEMPLATE:[WORK,WORK,CARRY,CARRY,CARRY,CARRY,MOVE,MOVE,MOVE],
-    SPAWN_NAME:"Spawn1"
+    SPAWN_NAME:"Spawn1",
+    DEBUG:true
 }

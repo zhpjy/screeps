@@ -4,7 +4,7 @@ const ruleBilder = require('role.builder');
 const creepManager = require('component.creepsManager');
 
 module.exports.loop = function () {
-
+    require('env').setEnv();
 
     creepManager.autoGenerate();
 
