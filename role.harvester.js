@@ -3,36 +3,50 @@ const utils = require('utils');
 var roleHarvester = {
 
     /** @param {Creep} creep **/
-    run: function(creep) {
+    run: function (creep) {
         function work(creep) {
-            var targets = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
-                        structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+            if (!creep.memory.workTargetId) {
+                let target = creep.pos.findClosestByRange(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN || structure.structureType == STRUCTURE_TOWER) &&
+                            structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
+                    }
+                });
+                if (target) {
+                    creep.memory.workTargetId = target.id;
+                    if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+                    } else {
+                        utils.upgradeWork(creep);
+                    }
                 }
-            });
-            if (targets.length > 0) {
-                if (creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
+            } else {
+                let target = Game.getObjectById(creep.memory.workTargetId);
+                let r = creep.transfer(target, RESOURCE_ENERGY)
+                if (r == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
+                } else if (r == ERR_FULL||r == ERR_INVALID_TARGET) {
+                    //如果满了
+                    creep.memory.workTargetId = null;
+                } else {
+                    console.log("r", r)
                 }
-            }else{
-                utils.upgradeWork(creep);
             }
         }
 
         utils.setWrokingToggole(
             null,
             {
-                show:()=>{
+                show: () => {
                     creep.say('store');
                 },
-                do:()=>{
+                do: () => {
                     work(creep);
-                } 
+                }
             },
             creep
         )
-	}
-};
+    }
+}
 
 module.exports = roleHarvester;
