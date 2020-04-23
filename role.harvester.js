@@ -17,8 +17,12 @@ var roleHarvester = {
                     if (creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(target, { visualizePathStyle: { stroke: '#ffffff' } });
                     } else {
+                        creep.memory.workTargetId = null;
                         utils.upgradeWork(creep);
                     }
+                }else{
+                    creep.memory.workTargetId = null;
+                    utils.upgradeWork(creep);
                 }
             } else {
                 let target = Game.getObjectById(creep.memory.workTargetId);
@@ -29,7 +33,9 @@ var roleHarvester = {
                     //如果满了
                     creep.memory.workTargetId = null;
                 } else {
-                    console.log("r", r)
+                    if(r!=0){
+                        console.log("r", r)
+                    }
                 }
             }
         }

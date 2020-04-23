@@ -50,12 +50,17 @@ function harvest(creep){
                 let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 if(r==ERR_NO_PATH){
                     //找不到路径，说明挤满了，换一个
-                    console.log(r)
+                    console.log("no way")
                     creep.memory.sourceId=null; 
+                }else{
+                   if(r!=0){
+                    console.log("util",r)
+                    creep.memory.sourceId=null; 
+                   } 
                 }
             }else if(result == ERR_NOT_ENOUGH_RESOURCES){
                 //一个矿挖完了就换一个
-                creep.memory.source=null; 
+                creep.memory.sourceId=null; 
             }else{
                 if(result!=0){
                     console.log("h",result)
