@@ -45,8 +45,10 @@ function harvest(creep){
             if(result == ERR_NOT_IN_RANGE){
                 //如果不在范围内则移动至
                 let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-                if(r!=0){
-                    creep.memory.source=null; 
+                if(r==ERR_NO_PATH){
+                    //找不到路径，说明挤满了，换一个
+                    console.log(r)
+                    creep.memory.sourceId=null; 
                 }
             }else if(result == ERR_NOT_ENOUGH_RESOURCES){
                 //一个矿挖完了就换一个
