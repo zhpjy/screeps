@@ -8,6 +8,7 @@ module.exports.loop = function () {
     require('env').setEnv();
 
     creepManager.autoGenerate();
+    creepManager.autoClean();
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
