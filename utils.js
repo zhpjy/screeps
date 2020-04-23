@@ -45,8 +45,10 @@ function harvest(creep){
             //如果不在范围内则移动至
             let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
             if(r!=0){
-                creep.memory.source=null; 
+                creep.memory.sourceId=null; 
             }
+        }else if(result == ERR_NOT_ENOUGH_RESOURCES){
+            creep.memory.sourceId=null;
         }
     }
 }
