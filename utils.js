@@ -41,7 +41,10 @@ function harvest(creep){
     }
     function moveToHarvest(target,creep){
         let result = creep.harvest(target)
-        if(target.length>0){
+        if(result==ERR_BUSY){
+            return;
+        }
+        if(target){
             if(result == ERR_NOT_IN_RANGE){
                 //如果不在范围内则移动至
                 let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
