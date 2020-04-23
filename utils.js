@@ -32,19 +32,19 @@ function harvest(creep){
     if(creep.memory.sourceId==null){
         creep.memory.sourceId = sources[0].id;
         sourceId = creep.memory.id; 
-        let targets = _.filter(sources, (s) => s.id == sourceId);
-        moveToHarvest(targets,creep);
+        let target = Game.getObjectById(sourceId)
+        moveToHarvest(target,creep);
     }else{
         sourceId = creep.memory.sourceId;
-        let targets = _.filter(sources, (s) => s.id == sourceId);
-        moveToHarvest(targets,creep);
+        let target = Game.getObjectById(sourceId)
+        moveToHarvest(target,creep);
     }
-    function moveToHarvest(targets,creep){
-        let result = creep.harvest(targets[0])
-        if(targets.length>0){
+    function moveToHarvest(target,creep){
+        let result = creep.harvest(target)
+        if(target.length>0){
             if(result == ERR_NOT_IN_RANGE){
                 //如果不在范围内则移动至
-                let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
+                let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 if(r==ERR_NO_PATH){
                     //找不到路径，说明挤满了，换一个
                     console.log(r)
@@ -53,6 +53,10 @@ function harvest(creep){
             }else if(result == ERR_NOT_ENOUGH_RESOURCES){
                 //一个矿挖完了就换一个
                 creep.memory.source=null; 
+            }else{
+                if(result!=0){
+                    console.log("h",result)
+                }
             }
         }
     }
