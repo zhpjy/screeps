@@ -4,8 +4,9 @@
  * 用法：
  *     引入
  *        const logger = require('util.log').getLogger(name);
- *        强制关闭（无视config里的日志等级）：const logger = require('util.log').getLogger("manager").off();
- *        强制打开（无视config里的日志等级）：const logger = require('util.log').getLogger("manager").on();
+ *        强制关闭（无视config里的日志等级）：logger.off();
+ *        强制打开（无视config里的日志等级）：logger.on();
+ *        取消强制设定：logger.reset();
  *     使用
  *        logger("a");
  *        logger("a","b");
@@ -46,6 +47,11 @@ class Logger{
 
     on(){
         this.forceControl=true;
+        return this;
+    }
+
+    reset(){
+        this.forceControl=null;
         return this;
     }
 
