@@ -1,4 +1,5 @@
 const utils = require('utils');
+const logger = require('util.log').getLogger("manager.creep");
 
 var roleHarvester = {
 
@@ -34,7 +35,7 @@ var roleHarvester = {
                     creep.memory.workTargetId = null;
                 } else {
                     if(r!=0){
-                        console.log("r", r)
+                        logger.warn("creep transfer error", r)
                     }
                 }
             }

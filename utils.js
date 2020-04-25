@@ -1,3 +1,5 @@
+const logger = require('util.log').getLogger("utils");
+
 //设置身上矿满了之后和空了两种工作状态互相切换。当first设置为null时，则默认设置为采矿
 //first,second都是字面量对象，有show方法(显示的内容)和do方法(工作的内容)
 function setWrokingToggole(first,second,creep){
@@ -50,11 +52,11 @@ function harvest(creep){
                 let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
                 if(r==ERR_NO_PATH){
                     //找不到路径，说明挤满了，换一个
-                    console.log("no way")
+                    logger.debug("creep moveTo","no way")
                     creep.memory.sourceId=null; 
                 }else{
                    if(r!=0){
-                    console.log("util",r)
+                    logger.warn("creep moveTo error",r)
                     creep.memory.sourceId=null; 
                    } 
                 }
@@ -63,7 +65,7 @@ function harvest(creep){
                 creep.memory.sourceId=null; 
             }else{
                 if(result!=0){
-                    console.log("h",result)
+                    logger.warn("creep harvest error",result)
                 }
             }
         }
