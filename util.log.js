@@ -8,8 +8,8 @@
  *        强制打开（无视config里的日志等级）：logger.on();
  *        取消强制设定：logger.reset();
  *     使用
- *        logger("a");
- *        logger("a","b");
+ *        logger.info("a");
+ *        logger.warn("a","b");
  */
 const CONFIG = require('config')
 
