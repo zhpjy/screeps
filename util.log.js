@@ -36,7 +36,7 @@ class Logger{
 
     _log(level,messages){
         if(this._canLog(this.LEVEL.get(level.trim()))){
-            console.log("["+level+"]("+this.name+")",messages.join(" "));
+            console.log("["+level+"]["+this.name+"]",messages.join(" "));
         }
     }
 
