@@ -1,7 +1,7 @@
 const roleHarvester = require('role.harvester');
 const roleUpgrader = require('role.upgrader');
 const ruleBilder = require('role.builder');
-const creepManager = require('component.creepsManager');
+const creepManager = require('manager.creep');
 const constructionTower = require('construction.tower');
 
 module.exports.loop = function () {
