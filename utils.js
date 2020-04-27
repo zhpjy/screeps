@@ -1,3 +1,5 @@
+const logger = require('util.log').getLogger("utils");
+
 //设置身上矿满了之后和空了两种工作状态互相切换。当first设置为null时，则默认设置为采矿
 //first,second都是字面量对象，有show方法(显示的内容)和do方法(工作的内容)
 function setWrokingToggole(first,second,creep){
@@ -32,20 +34,39 @@ function harvest(creep){
     if(creep.memory.sourceId==null){
         creep.memory.sourceId = sources[0].id;
         sourceId = creep.memory.id; 
-        let targets = _.filter(sources, (s) => s.id == sourceId);
-        moveToHarvest(targets,creep);
+        let target = Game.getObjectById(sourceId)
+        moveToHarvest(target,creep);
     }else{
         sourceId = creep.memory.sourceId;
-        let targets = _.filter(sources, (s) => s.id == sourceId);
-        moveToHarvest(targets,creep);
+        let target = Game.getObjectById(sourceId)
+        moveToHarvest(target,creep);
     }
-    function moveToHarvest(targets,creep){
-        let result = creep.harvest(targets[0])
-        if(targets.length>0&&result== ERR_NOT_IN_RANGE){
-            //如果不在范围内则移动至
-            let r = creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#ffffff'}});
-            if(r!=0){
+    function moveToHarvest(target,creep){
+        let result = creep.harvest(target)
+        if(result==ERR_BUSY){
+            return;
+        }
+        if(target){
+            if(result == ERR_NOT_IN_RANGE){
+                //如果不在范围内则移动至
+                let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+                if(r==ERR_NO_PATH){
+                    //找不到路径，说明挤满了，换一个
+                    logger.debug("creep moveTo","no way")
+                    creep.memory.sourceId=null; 
+                }else{
+                   if(r!=0){
+                    logger.warn("creep moveTo error",r)
+                    creep.memory.sourceId=null; 
+                   } 
+                }
+            }else if(result == ERR_NOT_ENOUGH_RESOURCES){
+                //一个矿挖完了就换一个
                 creep.memory.sourceId=null; 
+            }else{
+                if(result!=0){
+                    logger.warn("creep harvest error",result)
+                }
             }
         }else if(result == ERR_NOT_ENOUGH_RESOURCES){
             creep.memory.sourceId=null;
