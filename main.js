@@ -27,10 +27,7 @@ module.exports.loop = function () {
     //寻找当前房间内的防御塔
     var towerID = '';
     for(var id in Game.structures){
-        //console.log(Game.structures[id].structureType);
         if(Game.structures[id].structureType == 'tower'){
-            //console.log("222：" + Game.structures[id].structureType);
-            //console.log("222:" + id);
             towerID = id;
         }
     }

@@ -70,6 +70,10 @@ class Logger{
     error(...message){
         this._log("ERROR",message)
     }
+    
+    inject(fn){
+        
+    }
 }
 
 module.exports = Logger;
