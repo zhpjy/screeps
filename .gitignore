@@ -1,5 +1,6 @@
-/node_modules
-/screeps-multimeter.json
-/.screeps-multimeter.history
-/.screeps.json
-/.tscache
+node_modules
+screeps-multimeter.json
+.screeps-multimeter.history
+.screeps.json
+.tscache
+.vscode
