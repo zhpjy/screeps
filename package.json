@@ -1,0 +1,32 @@
+{
+  "name": "screeps",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "multimeter",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhpjy/screeps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhpjy/screeps/issues"
+  },
+  "homepage": "https://github.com/zhpjy/screeps#readme",
+  "dependencies": {
+    "@types/lodash": "^3.10.1",
+    "@types/node": "^13.13.4",
+    "@types/screeps": "^3.1.1",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-ts": "^6.0.0-beta.22"
+  },
+  "devDependencies": {
+    "grunt": "^1.1.0",
+    "grunt-screeps-new": "^1.0.0",
+    "screeps-multimeter": "^1.8.3",
+    "typescript": "^3.8.3"
+  }
+}
