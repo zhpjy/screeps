@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+     "target": "es6",
+     "noImplicitAny": false,
+     "module": "commonjs", 
+     "removeComments": false,
+     "sourceMap": false,
+     "rootDir": "src",
+     "outDir": "dist"//你要生成js的目录,可自由命名
+    }
+}
