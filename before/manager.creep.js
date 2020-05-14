@@ -16,9 +16,9 @@ function autoGenerate(){
     var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     logger.debug("harvesters:"+harvesters.length,"builders"+builders.length,"upgrader:" + upgrader.length)
 
-    if(Game.spawns[CONFIG.SPAWN_NAME].energy<300){
-        return;
-    }
+    // if(Game.spawns[CONFIG.SPAWN_NAME].energy<10){
+    //     return;
+    // }
 
     if(harvesters.length<CONFIG.HARVESTER_NUM){
         var newName = 'Harvester' + Game.time;

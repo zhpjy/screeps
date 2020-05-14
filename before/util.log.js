@@ -1,16 +1,3 @@
-
-/**
- * 日志工具类
- * 用法：
- *     引入
- *        const logger = require('util.log').getLogger(name);
- *        强制关闭（无视config里的日志等级）：logger.off();
- *        强制打开（无视config里的日志等级）：logger.on();
- *        取消强制设定：logger.reset();
- *     使用
- *        logger.info("a");
- *        logger.warn("a","b");
- */
 const CONFIG = require('config')
 
 class Logger{
@@ -40,6 +27,10 @@ class Logger{
         }
     }
 
+    setName(name){
+        this.name=name;
+    }
+
     off(){
         this.forceControl=false;
         return this;
@@ -47,11 +38,6 @@ class Logger{
 
     on(){
         this.forceControl=true;
-        return this;
-    }
-
-    reset(){
-        this.forceControl=null;
         return this;
     }
 
@@ -69,10 +55,6 @@ class Logger{
 
     error(...message){
         this._log("ERROR",message)
-    }
-    
-    inject(fn){
-        
     }
 }
 

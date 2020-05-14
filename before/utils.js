@@ -32,8 +32,8 @@ function harvest(creep){
     let sourceId = null;
     let sources = creep.room.find(FIND_SOURCES);
     if(creep.memory.sourceId==null){
-        creep.memory.sourceId = sources[0].id;
-        sourceId = creep.memory.id; 
+        creep.memory.sourceId = sources[Math.round(Math.random())].id;
+        sourceId = creep.memory.sourceId;
         let target = Game.getObjectById(sourceId)
         moveToHarvest(target,creep);
     }else{
@@ -68,8 +68,6 @@ function harvest(creep){
                     logger.warn("creep harvest error",result)
                 }
             }
-        }else if(result == ERR_NOT_ENOUGH_RESOURCES){
-            creep.memory.sourceId=null;
         }
     }
 }
