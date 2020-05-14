@@ -31,9 +31,10 @@ function setWrokingToggole(first,second,creep){
 function harvest(creep){
     let sourceId = null;
     let sources = creep.room.find(FIND_SOURCES);
+    // logger.debug(JSON.stringify(sources));
     if(creep.memory.sourceId==null){
-        creep.memory.sourceId = sources[0].id;
-        sourceId = creep.memory.id; 
+        creep.memory.sourceId = sources[Math.round(Math.random())].id;
+        sourceId = creep.memory.sourceId; 
         let target = Game.getObjectById(sourceId)
         moveToHarvest(target,creep);
     }else{
