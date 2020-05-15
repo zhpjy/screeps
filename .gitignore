@@ -2,7 +2,6 @@
 .screeps.json
 .tscache/
 .vscode/
-dist/
 doc/
 node_modules/
 screeps-multimeter.json
