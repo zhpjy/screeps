@@ -92,6 +92,13 @@ function findClose(){
 
 }
 
+function activateSafeModeIfOnlyOneRoom(){
+    let rooms = Object.keys(Game.rooms);
+    if(rooms.length=1&&Game.rooms[rooms[0]].controller.safeMode==undefined){
+        Game.rooms[rooms[0]].controller.activateSafeMode();
+    }
+}
+
 /**
  * 计算creep生产能量消耗
  * @param {Array} bodys 
@@ -135,5 +142,6 @@ module.exports = {
     setWrokingToggole:setWrokingToggole,
     harvest:harvest,
     upgradeWork:upgradeWork,
-    calCreepCost:calCreepCost 
+    calCreepCost:calCreepCost,
+    activateSafeModeIfOnlyOneRoom:activateSafeModeIfOnlyOneRoom
 };

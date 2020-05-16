@@ -3,8 +3,11 @@ const roleUpgrader = require('role.upgrader');
 const ruleBilder = require('role.builder');
 const creepManager = require('manager.creep');
 const constructionTower = require('construction.tower');
+const utils = require('utils');
 
 module.exports.loop = function () {
+    //只有一个房间时，自动打开安全模式
+    utils.activateSafeModeIfOnlyOneRoom();
 
     creepManager.autoGenerate();
     creepManager.autoClean();
