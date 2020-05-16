@@ -51,7 +51,10 @@ function harvest(creep){
             if(result == ERR_NOT_IN_RANGE){
                 //如果不在范围内则移动至
                 let r = creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
-                if(r==ERR_NO_PATH){
+                if(r==ERR_TIRED){
+                    //累了就让它休息一个tick
+                    return;
+                }if(r==ERR_NO_PATH){
                     //找不到路径，说明挤满了，换一个
                     logger.debug("creep moveTo","no way")
                     creep.memory.sourceId=null; 
