@@ -5,7 +5,6 @@ const creepManager = require('manager.creep');
 const constructionTower = require('construction.tower');
 
 module.exports.loop = function () {
-    require('env').setEnv();
 
     creepManager.autoGenerate();
     creepManager.autoClean();

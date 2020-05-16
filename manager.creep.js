@@ -1,5 +1,6 @@
 const CONFIG = require('config');
 const logger = require('util.log').getLogger("manager.creep");
+const utils = require('utils');
 
 function autoClean(){
     for(var name in Memory.creeps) {
@@ -16,7 +17,10 @@ function autoGenerate(){
     var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
     logger.debug("harvesters:"+harvesters.length,"builders"+builders.length,"upgrader:" + upgrader.length)
 
-    if(Game.spawns[CONFIG.SPAWN_NAME].energy<300){
+    let spawnCreepCost=utils.calCreepCost(CONFIG.WORKER_TEMPLATE);
+    //第一个房间的能量总数
+    let energyAvlable=Game.rooms[(Object.keys(Game.rooms)[0])].energyCapacityAvailable;
+    if(spawnCreepCost>energyAvlable){
         return;
     }
 

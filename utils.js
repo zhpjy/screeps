@@ -89,6 +89,18 @@ function findClose(){
 
 }
 
+/**
+ * 计算creep生产能量消耗
+ * @param {Array} bodys 
+ */
+function calCreepCost(bodys){
+    let sum=0;
+    bodys.forEach(element => {
+        sum+=BODYPART_COST[element]
+    });
+    return sum;
+}
+
 //findTargetCallback需要返回一个数组
 function setWorkTarget(creep,findTargetCallback,doWrokCallback,randomWrokCallBack){
     if(creep.memory.workTargetId){
@@ -119,5 +131,6 @@ function doAndShowError(){
 module.exports = {
     setWrokingToggole:setWrokingToggole,
     harvest:harvest,
-    upgradeWork:upgradeWork
+    upgradeWork:upgradeWork,
+    calCreepCost:calCreepCost 
 };
