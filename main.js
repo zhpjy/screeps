@@ -25,20 +25,20 @@ module.exports.loop = function () {
         }
     }
 
-    // //统一管理功能性建筑当前工作
-    // //寻找当前房间内的防御塔
-    // var towerID = '';
-    // for(var id in Game.structures){
-    //     if(Game.structures[id].structureType == 'tower'){
-    //         towerID = id;
-    //     }
-    // }
-    // var tower = Game.getObjectById(towerID);
+    //统一管理功能性建筑当前工作
+    //寻找当前房间内的防御塔
+    var towerID = '';
+    for(var id in Game.structures){
+        if(Game.structures[id].structureType == 'tower'){
+            towerID = id;
+        }
+    }
+    var tower = Game.getObjectById(towerID);
     
-    // //调用
-    // if(tower){
-    //     constructionTower.attack(tower);
-    //     //console.log(tower)
-    //     constructionTower.repair(tower);
-    // }
+    //调用
+    if(tower){
+        constructionTower.attack(tower);
+        //console.log(tower)
+        constructionTower.repair(tower);
+    }
 }
